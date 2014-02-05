@@ -1,0 +1,17 @@
+{
+  "name": "react-root",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node app.js",
+    "build-hello": "browserify ./static/scripts/entrypoints/hello.js -o ./static/scripts/bundles/hello.js",
+    "build-server": "browserify -r ./static/scripts/entrypoints/server.js:serverRoot -o ./static/scripts/bundles/server.js",
+    "build": "npm run build-hello && npm run build-server"
+  },
+  "dependencies": {
+    "express": "3.4.8",
+    "react": "0.8.0",
+    "browserify": "~3.24.11",
+    "qs": "~0.6.6"
+  },
+  "license": "Apache 2"
+}
