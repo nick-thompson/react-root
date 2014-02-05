@@ -1,11 +1,15 @@
 
 var React = require('react');
 var Router = require('../Router');
+var Root = require('../components/Root');
 
 function serverRender(path, qs, data, callback) {
   var router = new Router();
   router.on('route', function(desc) {
-    React.renderComponentToString(desc.component, callback);
+    var root = new Root({
+      component: desc.component
+    });
+    React.renderComponentToString(root, callback);
   });
   router.navigate(path, qs);
 }

@@ -15902,7 +15902,7 @@ var Root = React.createClass({
 
   getInitialState: function() {
     return {
-      component: null
+      component: this.props.component
     };
   },
 
@@ -15921,10 +15921,17 @@ var Root = React.createClass({
 
 });
 
+module.exports = Root;
+
+},{"../Router":125,"react":124}],128:[function(require,module,exports){
+
+var React = require('react');
+var Root = require('../components/Root');
 var root = new Root();
+
 window.addEventListener('load', function() {
   React.renderComponent(root, window.document.body);
   root.router.navigate(window.location.pathname, window.location.search);
 });
 
-},{"../Router":125,"react":124}]},{},[127])
+},{"../components/Root":127,"react":124}]},{},[128])

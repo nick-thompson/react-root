@@ -15893,17 +15893,51 @@ var Hello = React.createClass({
 
 module.exports = Hello;
 
-},{"react":124}],"serverRoot":[function(require,module,exports){
+},{"react":124}],127:[function(require,module,exports){
+
+var React = require('react');
+var Router = require('../Router');
+
+var Root = React.createClass({
+
+  getInitialState: function() {
+    return {
+      component: this.props.component
+    };
+  },
+
+  componentWillMount: function() {
+    this.router = new Router();
+    this.router.on('route', function(desc) {
+      this.setState({
+        component: desc.component
+      });
+    }.bind(this));
+  },
+
+  render: function() {
+    return this.state.component || React.DOM.h1(null, 'hi');
+  }
+
+});
+
+module.exports = Root;
+
+},{"../Router":125,"react":124}],"serverRoot":[function(require,module,exports){
 module.exports=require('gjB3dF');
 },{}],"gjB3dF":[function(require,module,exports){
 
 var React = require('react');
 var Router = require('../Router');
+var Root = require('../components/Root');
 
 function serverRender(path, qs, data, callback) {
   var router = new Router();
   router.on('route', function(desc) {
-    React.renderComponentToString(desc.component, callback);
+    var root = new Root({
+      component: desc.component
+    });
+    React.renderComponentToString(root, callback);
   });
   router.navigate(path, qs);
 }
@@ -15923,4 +15957,4 @@ module.exports = {
   clientRender: clientRender
 };
 
-},{"../Router":125,"react":124}]},{},[])
+},{"../Router":125,"../components/Root":127,"react":124}]},{},[])
