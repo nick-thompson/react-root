@@ -17,7 +17,7 @@ function serverRender(path, qs, data, callback) {
 function clientRender(path, qs, data, callback) {
   var router = new Router();
   router.on('route', function(desc) {
-    var markup = '<script type="text/javascript" src="/static/scripts/bundles/'
+    var markup = '<script type="text/javascript" src="/static/bundles/'
       + desc.entrypoint + '.js"></script><body></body>';
     callback(markup);
   });

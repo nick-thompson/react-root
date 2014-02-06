@@ -6,10 +6,9 @@ var http = require('http');
 var path = require('path');
 var app = express();
 var bundleRequire = require('./lib/bundleRequire');
-var serverRoot = bundleRequire(
-  './static/scripts/bundles/server.js',
-  'serverRoot'
-);
+var serverRoot = bundleRequire('./static/bundles/server.js', 'serverRoot');
+
+var SHOULD_SERVER_RENDER = true;
 
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -33,20 +32,17 @@ app.use(function(req, res, next) {
   return next();
 });
 
+// And now that the middleware has all run, we'll pass the remainder of the
+// execution off onto the bundled router.
 app.use(function(req, res, next) {
   var data = {};
-  var ua = req.get('User-Agent');
-  if (/Chrome/.test(ua)) {
-    // Let's client-render in chrome just for giggles
-    serverRoot.clientRender(req.path, req.queryString, data, function(markup) {
-      res.send(200, markup);
-    });
-  } else {
-    // And server-render elsewhere
-    serverRoot.serverRender(req.path, req.queryString, data, function(markup) {
-      res.send(200, markup);
-    });
-  }
+  var render = SHOULD_SERVER_RENDER
+    ? serverRoot.serverRender
+    : serverRoot.clientRender;
+
+  render(req.path, req.queryString, data, function(markup) {
+    res.send(200, markup);
+  });
 });
 
 http.createServer(app).listen(3000, function() {
