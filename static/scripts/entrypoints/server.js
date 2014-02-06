@@ -1,7 +1,7 @@
 
 var React = require('react');
 var Router = require('../Router');
-var Root = require('../components/Root');
+var Root = require('../Root');
 
 function serverRender(path, qs, data, callback) {
   var router = new Router();

@@ -1,6 +1,6 @@
 
 var React = require('react');
-var Root = require('../components/Root');
+var Root = require('../Root');
 var root = new Root();
 
 window.addEventListener('load', function() {

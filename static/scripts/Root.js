@@ -1,6 +1,6 @@
 
 var React = require('react');
-var Router = require('../Router');
+var Router = require('./Router');
 
 var Root = React.createClass({
 
