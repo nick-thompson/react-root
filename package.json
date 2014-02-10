@@ -11,7 +11,8 @@
     "express": "3.4.8",
     "react": "0.8.0",
     "qs": "~0.6.6",
-    "webpack": "~1.0.0-rc3"
+    "webpack": "~1.0.0-rc3",
+    "jsx-loader": "0.0.0"
   },
   "license": "Apache 2"
 }
