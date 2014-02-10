@@ -5,10 +5,9 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var app = express();
-var bundleRequire = require('./lib/bundleRequire');
-var serverRoot = bundleRequire('./static/bundles/server.js', 'serverRoot');
+var serverRoot = require('./static/bundles/server');
 
-var SHOULD_SERVER_RENDER = true;
+var SHOULD_SERVER_RENDER = false;
 
 app.use(express.logger('dev'));
 app.use(express.json());
