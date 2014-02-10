@@ -34,12 +34,11 @@ app.use(function(req, res, next) {
 // And now that the middleware has all run, we'll pass the remainder of the
 // execution off onto the bundled router.
 app.use(function(req, res, next) {
-  var data = {};
   var render = SHOULD_SERVER_RENDER
     ? serverRoot.serverRender
     : serverRoot.clientRender;
 
-  render(req.path, req.queryString, data, function(markup) {
+  render(req.path, req.queryString, function(markup) {
     res.send(200, markup);
   });
 });
