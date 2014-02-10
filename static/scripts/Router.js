@@ -4,8 +4,15 @@ var events = require('events');
 var util = require('util');
 
 function Router(routes, data) {
+  // Return a singleton so that configuration can be specified in one place,
+  // and can be ignored elsewhere. Will keep client code cleaner for calls
+  // to navigate() and such.
+  if (arguments.callee._singletonInstance) {
+    return arguments.callee._singletonInstance;
+  }
   this.routes = routes;
   this.data = data;
+  arguments.callee._singletonInstance = this;
 }
 
 util.inherits(Router, events.EventEmitter);
