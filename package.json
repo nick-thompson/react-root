@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "scripts": {
     "start": "node app.js",
-    "build-hello": "browserify ./static/scripts/entrypoints/hello.js -o ./static/bundles/hello.js",
-    "build-server": "browserify -r ./static/scripts/entrypoints/server.js:serverRoot -o ./static/bundles/server.js",
+    "build-hello": "browserify ./lib/entrypoints/hello.js -o ./static/bundles/hello.js",
+    "build-server": "browserify -r ./lib/entrypoints/server.js:serverRoot -o ./static/bundles/server.js",
     "build": "npm run build-hello && npm run build-server"
   },
   "dependencies": {
